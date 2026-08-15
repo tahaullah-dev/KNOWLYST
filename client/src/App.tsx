@@ -1,7 +1,6 @@
 // client/src/App.tsx
 import { useState } from 'react';
 import { AssessmentProvider } from './context/AssessmentContext';
-import { ThemeProvider } from './context/ThemeContext';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import Layout from './components/layout/Layout';
 import HomePage from './components/home/HomePage';
@@ -18,18 +17,17 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <ThemeProvider>
-        <AssessmentProvider>
-          <Layout 
-            onBrandClick={() => {
-              setSelectedHistoryResult(null);
-              setCurrentView('home');
-            }}
-            onHistoryClick={() => {
-              setSelectedHistoryResult(null);
-              setCurrentView('history');
-            }}
-          >
+      <AssessmentProvider>
+        <Layout 
+          onBrandClick={() => {
+            setSelectedHistoryResult(null);
+            setCurrentView('home');
+          }}
+          onHistoryClick={() => {
+            setSelectedHistoryResult(null);
+            setCurrentView('history');
+          }}
+        >
           {currentView === 'home' && (
             <HomePage onStartAssessment={() => setCurrentView('assessment')} />
           )}
@@ -59,8 +57,7 @@ function App() {
             />
           )}
         </Layout>
-        </AssessmentProvider>
-      </ThemeProvider>
+      </AssessmentProvider>
     </ErrorBoundary>
   );
 }

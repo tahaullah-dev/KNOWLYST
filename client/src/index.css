@@ -13,15 +13,6 @@
   --motion-duration: 300ms;
 }
 
-html.dark {
-  --color-text-primary: #f3efe9;
-  --color-text-secondary: #d2cfc7;
-  --color-text-tertiary: #a9a4a0;
-  --color-surface-paper: #181816;
-  --color-accent-primary: #e27b69;
-  --color-border-light: #2f2d2b;
-}
-
 @media (prefers-reduced-motion: reduce) {
   :root {
     --motion-duration: 0ms;
