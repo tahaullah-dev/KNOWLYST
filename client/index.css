@@ -1,0 +1,199 @@
+/* client/src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color Scheme CSS Variables */
+:root {
+  --color-primary-600: #2563eb;
+  --color-success-600: #16a34a;
+  --color-warning-600: #ca8a04;
+  --color-danger-600: #dc2626;
+  --color-info-600: #0284c7;
+}
+
+@layer base {
+  body {
+    @apply bg-secondary-50 text-secondary-900 antialiased;
+  }
+
+  /* Semantic HTML elements */
+  h1 {
+    @apply text-h1 font-bold;
+  }
+
+  h2 {
+    @apply text-h2 font-semibold;
+  }
+
+  h3 {
+    @apply text-h3 font-semibold;
+  }
+
+  h4 {
+    @apply text-h4 font-semibold;
+  }
+
+  p {
+    @apply text-body text-secondary-900;
+  }
+
+  label {
+    @apply text-label text-secondary-700;
+  }
+
+  code {
+    @apply bg-secondary-100 text-secondary-900 rounded-small px-xs py-xs;
+  }
+}
+
+@layer components {
+  /* Card component */
+  .card {
+    @apply bg-white rounded-medium shadow-sm border border-secondary-200;
+  }
+
+  .card-elevated {
+    @apply card shadow-md;
+  }
+
+  /* Form utilities */
+  .form-input {
+    @apply block w-full rounded-medium border-2 border-secondary-200 px-base py-base text-body bg-white transition-all
+      focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:bg-white;
+  }
+
+  .form-input:disabled {
+    @apply bg-secondary-50 text-secondary-500 cursor-not-allowed;
+  }
+
+  .form-input.error {
+    @apply border-danger-500 focus:border-danger-600 focus:ring-danger-500;
+  }
+
+  .form-label {
+    @apply block text-label text-secondary-700 font-semibold mb-md;
+  }
+
+  .form-helper-text {
+    @apply text-body-sm text-secondary-600 mt-sm;
+  }
+
+  .form-error {
+    @apply text-body-sm text-danger-600 mt-sm font-medium;
+  }
+
+  /* Button utilities (to be used alongside Button component) */
+  .btn-base {
+    @apply inline-flex items-center justify-center rounded-medium font-button transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn-base bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply btn-base bg-white text-secondary-900 border-2 border-secondary-200 hover:bg-secondary-50 focus:ring-primary-500;
+  }
+
+  .btn-danger {
+    @apply btn-base bg-danger-600 text-white hover:bg-danger-700 focus:ring-danger-500;
+  }
+
+  /* Badge/status indicator */
+  .badge {
+    @apply inline-flex items-center rounded-full px-lg py-sm text-label font-semibold;
+  }
+
+  .badge-success {
+    @apply badge bg-success-100 text-success-700;
+  }
+
+  .badge-warning {
+    @apply badge bg-warning-100 text-warning-700;
+  }
+
+  .badge-danger {
+    @apply badge bg-danger-100 text-danger-700;
+  }
+
+  .badge-info {
+    @apply badge bg-info-100 text-info-700;
+  }
+
+  .badge-neutral {
+    @apply badge bg-secondary-100 text-secondary-700;
+  }
+
+  /* Alert boxes */
+  .alert {
+    @apply rounded-medium border-l-4 p-lg flex flex-col sm:flex-row sm:items-start gap-lg;
+  }
+
+  .alert-success {
+    @apply alert border-l-success-600 bg-success-50 text-success-800;
+  }
+
+  .alert-warning {
+    @apply alert border-l-warning-600 bg-warning-50 text-warning-800;
+  }
+
+  .alert-danger {
+    @apply alert border-l-danger-600 bg-danger-50 text-danger-800;
+  }
+
+  .alert-info {
+    @apply alert border-l-info-600 bg-info-50 text-info-800;
+  }
+
+  /* Page container */
+  .page-container {
+    @apply min-h-screen bg-secondary-50;
+  }
+
+  .page-content {
+    @apply max-w-7xl mx-auto px-base py-lg sm:px-lg sm:py-xl;
+  }
+
+  .page-narrow {
+    @apply max-w-3xl mx-auto px-base py-lg sm:px-lg sm:py-xl;
+  }
+
+  /* Section header */
+  .section-header {
+    @apply mb-2xl;
+  }
+
+  .section-header h2 {
+    @apply text-h2 font-bold mb-md;
+  }
+
+  .section-header p {
+    @apply text-body-sm text-secondary-600;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply bg-secondary-200 rounded-medium animate-pulse;
+  }
+
+  /* Focus visible (accessible focus indicator) */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+  }
+}
+
+/* Animations and transitions */
+@layer utilities {
+  .transition-fast {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  .transition-normal {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .transition-slow {
+    @apply transition-all duration-500 ease-in-out;
+  }
+}
