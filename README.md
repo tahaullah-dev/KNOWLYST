@@ -508,10 +508,6 @@ A sensible contribution workflow is:
 4. validate frontend and backend builds
 5. submit a pull request with a clear explanation
 
-## License
-
-No license file is currently present in the repository, so the project does not yet declare a license.
-
 ## Summary
 
 KNOWLYST is a full-stack, AI-assisted assessment platform designed to estimate how well a learner understands a topic across multiple layers of difficulty. The project combines a modern React frontend, a TypeScript Express backend, Gemini-based question generation, validation, duplicate filtering, and an analysis engine that turns assessment responses into useful diagnostic insight.
