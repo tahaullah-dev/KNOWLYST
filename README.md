@@ -796,35 +796,46 @@ KNOWLYST
 
 # 🗺️ Roadmap
 
-The following are future-facing ideas and are **not currently implemented**:
+KNOWLYST is currently focused on building a strong diagnostic assessment foundation.  
+The next stage is to evolve it from a knowledge assessment tool into a personalized learning intelligence platform.
 
 ### 👤 Personalization
 
-- [ ] User authentication
-- [ ] Saved learner profiles
-- [ ] Persistent cloud-based assessment history
+| Status | Feature | Direction |
+|:---:|---|---|
+| 🔲 | **User Authentication** | Secure learner accounts and personalized experiences |
+| 🔲 | **Learner Profiles** | Build a persistent knowledge profile for each learner |
+| 🔲 | **Cloud Assessment History** | Store and access assessments across devices |
 
 ### 🧠 Intelligence
 
-- [ ] More sophisticated knowledge modeling
-- [ ] Richer personalized learning paths
-- [ ] More advanced recommendation logic
+| Status | Feature | Direction |
+|:---:|---|---|
+| 🔲 | **Advanced Knowledge Modeling** | Develop richer models for estimating knowledge depth |
+| 🔲 | **Personalized Learning Paths** | Generate learning paths based on identified knowledge gaps |
+| 🔲 | **Advanced Recommendations** | Recommend specific concepts and resources to improve weak areas |
 
 ### 📊 Analytics
 
-- [ ] Longitudinal learning analytics
-- [ ] Progress tracking over time
-- [ ] Historical knowledge comparisons
+| Status | Feature | Direction |
+|:---:|---|---|
+| 🔲 | **Longitudinal Analytics** | Track how knowledge changes over time |
+| 🔲 | **Progress Tracking** | Visualize improvement across repeated assessments |
+| 🔲 | **Historical Comparisons** | Compare current knowledge against previous assessments |
 
-### 🤖 AI
+### 🤖 AI Evolution
 
-- [ ] Additional AI providers
-- [ ] Flexible model selection
-- [ ] Expanded generation strategies
+| Status | Feature | Direction |
+|:---:|---|---|
+| 🔲 | **Multi-Model Support** | Support additional AI providers and models |
+| 🔲 | **Adaptive Assessments** | Dynamically adjust question difficulty based on responses |
+| 🔲 | **Smarter Question Generation** | Improve question diversity, depth, and contextual relevance |
 
 ---
 
-# 📸 Screenshots
+> **The long-term vision:** move from *“How much did you score?”* to *“What do you understand, where are your gaps, and what should you learn next?”*
+
+---
 
 # 📸 Screenshots
 
