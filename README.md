@@ -1,254 +1,477 @@
+Yes — here is the **complete README.md as raw Markdown**, ready to paste directly into your `README.md` file. It is based on your existing README and the improvements above. 
+
+````markdown
 # KNOWLYST
 
-> Know the unknown.
+> **Know the unknown.**
 
-A diagnostic knowledge assessment platform that generates AI-powered topic assessments, measures understanding across difficulty levels, and surfaces the strengths, gaps, and next steps that matter most.
+**KNOWLYST** is an AI-powered diagnostic knowledge assessment platform designed to go beyond simple quiz scores.
 
-![Status](https://img.shields.io/badge/status-active-success)
-![Frontend](https://img.shields.io/badge/frontend-React%20%2B%20Vite-61dafb)
-![Backend](https://img.shields.io/badge/backend-Express%20%2B%20Node-68a063)
-![AI](https://img.shields.io/badge/AI-Gemini%20API-4285f4)
+Instead of asking only **“How many questions did you get right?”**, KNOWLYST asks:
 
-## Overview
+> **“How deeply do you actually understand this topic?”**
 
-KNOWLYST is not a vanity quiz app. It is designed to estimate how deeply a learner understands a topic by combining AI-generated questions with layered analysis of performance across concept difficulty, topic coverage, and confidence.
+It generates structured assessments across multiple difficulty levels, validates and refines AI-generated questions, analyzes performance across different dimensions, and turns the results into actionable insights about **strengths, knowledge gaps, confidence, and what to learn next**.
 
-Traditional assessment tools often reduce a learner to a single percentage. This app approaches the problem differently: it asks whether the learner can explain fundamentals, handle practical scenarios, reason under complexity, and sustain understanding at higher levels of depth.
+---
 
-The experience revolves around a simple idea: identify what is known, what is weak, and what should be learned next.
+<div align="center">
 
-## Key Features
+![Status](https://img.shields.io/badge/status-active-success?style=for-the-badge)
+![Frontend](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Backend](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![AI](https://img.shields.io/badge/AI-Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-- AI-generated topic assessments from a user-provided subject or topic
-- Difficulty progression from foundation through deep reasoning
-- Validation and duplicate detection to prevent weak or repeated questions
-- Regenerative question generation when a batch fails quality checks
-- Results dashboard with score, confidence, and performance signals
-- Topic and question-type performance analysis
-- Knowledge level estimation based on difficulty and consistency
-- Personalized recommendations and summary feedback
-- Assessment history stored in browser localStorage
-- Answer review with explanations and question-by-question insight
+</div>
 
-## How It Works
+---
+
+## 🧭 Why KNOWLYST?
+
+Most quiz applications reduce learning to a single number:
+
+```text
+                    ┌───────────────┐
+                    │   24 / 30     │
+                    │     80%       │
+                    └───────────────┘
+                           ↓
+                    "You did well."
+````
+
+KNOWLYST takes a different approach.
+
+```text
+                         KNOWLYST
+                            │
+              ┌─────────────┼─────────────┐
+              ↓             ↓             ↓
+         What you know   What you miss   What's next
+              │             │             │
+              └─────────────┼─────────────┘
+                            ↓
+                  Diagnostic Insight
+```
+
+The goal is not to produce a **vanity score**.
+
+The goal is to make understanding **visible, measurable, and actionable**.
+
+---
+
+## ✨ What Makes KNOWLYST Different?
+
+### 🧠 Layered Assessment
+
+Questions progress through multiple levels of cognitive depth:
+
+**Foundation → Intermediate → Advanced → Deep → Verification**
+
+This allows the system to probe whether understanding survives as complexity increases.
+
+### 🤖 AI-Generated Assessments
+
+A topic supplied by the learner is transformed into a structured assessment using Google Gemini.
+
+### 🛡️ Question Quality Control
+
+AI-generated questions pass through validation and duplicate detection before reaching the learner.
+
+### 🔄 Automatic Regeneration
+
+When generated questions fail validation or quality requirements, KNOWLYST can regenerate the rejected items rather than returning a weak assessment.
+
+### 📊 Multi-Dimensional Analysis
+
+Performance isn't treated as a single percentage.
+
+The analysis considers:
+
+* Overall accuracy
+* Difficulty-level performance
+* Topic performance
+* Question-type performance
+* Consistency
+* Deep-performance signals
+* Topic coverage
+* Confidence
+* Knowledge level
+
+### 🎯 Actionable Feedback
+
+The final result identifies:
+
+**Strengths → Weaknesses → Knowledge Level → Recommendations**
+
+---
+
+## 🧩 Core Features
+
+| Feature                         | Description                                                       |
+| ------------------------------- | ----------------------------------------------------------------- |
+| 🤖 **AI Assessment Generation** | Generate assessments from any supported subject or topic          |
+| 📈 **Progressive Difficulty**   | Move from fundamentals to advanced and deep reasoning             |
+| 🧠 **Knowledge Estimation**     | Estimate proficiency using multiple performance signals           |
+| 🔍 **Question Validation**      | Validate AI-generated question structure and quality              |
+| ♻️ **Duplicate Detection**      | Detect and remove repeated or near-duplicate questions            |
+| 🔄 **Regeneration**             | Replace rejected questions automatically                          |
+| 📊 **Performance Analytics**    | Analyze performance across difficulty, topics, and question types |
+| 🎯 **Recommendations**          | Surface learning direction based on assessment performance        |
+| 📝 **Answer Review**            | Review individual questions with explanations                     |
+| 🕘 **Assessment History**       | Persist completed assessments using browser `localStorage`        |
+| 💬 **Confidence Analysis**      | Provide a confidence signal alongside the knowledge estimate      |
+
+---
+
+## 🔬 How KNOWLYST Works
 
 ```mermaid
 flowchart TD
-    A[Topic / Subject] --> B[Concept Mapping]
-    B --> C[Assessment Blueprint]
-    C --> D[Difficulty Allocation]
-    D --> E[Question Generation]
-    E --> F[Validation]
-    F --> G[Duplicate Detection]
-    G --> H{Valid?}
-    H -- No --> I[Regenerate Rejected Questions]
-    I --> J[Final Assessment]
-    H -- Yes --> J
-    J --> K[User Answer Set]
-    K --> L[Performance Analysis]
-    L --> M[Knowledge Estimation]
-    M --> N[Strengths, Gaps, Recommendations]
-    N --> O[Results Dashboard]
+
+    A["🎯 Topic / Subject"] --> B["🧩 Concept Mapping"]
+    B --> C["📐 Assessment Blueprint"]
+    C --> D["📊 Difficulty Allocation"]
+    D --> E["🤖 AI Question Generation"]
+
+    E --> F["🛡️ Validation"]
+    F --> G["🔍 Duplicate Detection"]
+
+    G --> H{"Valid?"}
+
+    H -- "No" --> I["♻️ Regenerate Rejected Questions"]
+    I --> F
+
+    H -- "Yes" --> J["📝 Final Assessment"]
+
+    J --> K["👤 Learner Answers"]
+    K --> L["📊 Performance Analysis"]
+
+    L --> M["🧠 Knowledge Estimation"]
+    M --> N["🎯 Strengths + Gaps + Recommendations"]
+    N --> O["📈 Results Dashboard"]
 ```
 
-The assessment pipeline is implemented across both the client and server:
+### The Pipeline
 
-1. The user chooses a topic and assessment size.
-2. The frontend calls the backend API to generate an assessment.
-3. The backend builds a difficulty blueprint using the topic and number of questions.
-4. Gemini generates question batches tailored to the topic and learner depth.
-5. Generated questions are validated for structure, quality, and expected count.
-6. Duplicate or near-duplicate items are removed and replaced.
-7. The final assessment is delivered to the client.
-8. The client analyzes the learner’s answers and estimates knowledge depth.
-9. Results show performance, confidence, strengths, weaknesses, and learning direction.
+1. **Choose a topic** and assessment size.
+2. The frontend sends the request to the backend.
+3. The backend builds an assessment blueprint.
+4. The blueprint determines the intended difficulty distribution.
+5. Gemini generates question batches.
+6. Generated questions are structurally validated.
+7. Duplicate or near-duplicate questions are filtered.
+8. Rejected questions are regenerated when necessary.
+9. The final assessment is returned to the client.
+10. The learner completes the assessment.
+11. The analysis engine evaluates multiple performance signals.
+12. KNOWLYST estimates knowledge depth and confidence.
+13. The results dashboard presents strengths, gaps, and recommendations.
 
-## Knowledge Assessment Model
+---
 
-The application estimates knowledge using signals from the user's answers rather than a raw “percent correct” alone.
+## 🧠 Knowledge Assessment Model
 
-The analysis layer in `client/src/services/analysis.ts` calculates:
+KNOWLYST deliberately avoids treating:
 
-- overall accuracy
-- per-difficulty performance
-- topic performance
-- question-type performance
-- consistency across difficulty levels
-- deep-performance signals
-- topic coverage
-- confidence score
-- knowledge level classification
-- summary recommendations
+```text
+Correct Answers ÷ Total Questions
+```
 
-This is a practical diagnostic model, not a claim of absolute intelligence measurement. The app is designed to estimate proficiency and diagnostic confidence based on how a user performs across layered question types and difficulty bands.
+as the complete representation of knowledge.
 
-## Difficulty Framework
+Instead, the analysis layer evaluates several signals.
 
-The backend generates questions across a staged depth model:
+```text
+                    Learner Responses
+                           │
+          ┌────────────────┼────────────────┐
+          ↓                ↓                ↓
+     Accuracy          Difficulty        Topic
+          │                │                │
+          ↓                ↓                ↓
+   Question Type      Consistency     Deep Performance
+          │                │                │
+          └────────────────┼────────────────┘
+                           ↓
+                    Topic Coverage
+                           ↓
+                    Confidence Signal
+                           ↓
+                  Knowledge Classification
+                           ↓
+                Recommendations & Insights
+```
 
-- Foundation: entry-level understanding, terminology, and basic principles
-- Intermediate: relationships, common workflows, and practical application
-- Advanced: more complex reasoning, trade-offs, and multi-step scenarios
-- Deep: expert-style reasoning, edge cases, and root-cause analysis
-- Verification: targeted probing to confirm whether the user’s apparent level is genuine
+The analysis layer currently calculates:
 
-This is defined in the prompt builder and blueprint generation logic in `server/src/services/promptBuilder.ts`.
+* Overall accuracy
+* Performance by difficulty
+* Performance by topic
+* Performance by question type
+* Consistency across difficulty levels
+* Deep-performance signals
+* Topic coverage
+* Confidence score
+* Knowledge-level classification
+* Summary recommendations
 
-## Technical Architecture
+> **Important:** KNOWLYST is a practical diagnostic model. It does not claim to measure absolute intelligence or provide a scientifically validated psychometric measurement.
+
+---
+
+## 📚 Difficulty Framework
+
+KNOWLYST structures assessment depth into five stages.
+
+| Stage               | Purpose                                                              |
+| ------------------- | -------------------------------------------------------------------- |
+| 🟢 **Foundation**   | Terminology, basic principles, and entry-level understanding         |
+| 🔵 **Intermediate** | Relationships, workflows, and practical application                  |
+| 🟠 **Advanced**     | Complex reasoning, trade-offs, and multi-step scenarios              |
+| 🔴 **Deep**         | Edge cases, expert reasoning, and root-cause analysis                |
+| 🟣 **Verification** | Targeted probing to verify whether apparent understanding is genuine |
+
+This framework is implemented through the assessment blueprint and prompt-building logic.
+
+Primary implementation:
+
+```text
+server/src/services/promptBuilder.ts
+```
+
+---
+
+## 🏗️ Architecture
+
+KNOWLYST uses a split full-stack architecture.
+
+```text
+┌──────────────────────────────────────────────────────────────┐
+│                         KNOWLYST                             │
+└──────────────────────────────────────────────────────────────┘
+                              │
+                              ↓
+┌──────────────────────────────────────────────────────────────┐
+│                     React + TypeScript                       │
+│                                                              │
+│  Topic Setup → Assessment → Results → History                │
+└──────────────────────────────┬───────────────────────────────┘
+                               │
+                               │ HTTP API
+                               ↓
+┌──────────────────────────────────────────────────────────────┐
+│                 Node.js + Express + TypeScript               │
+│                                                              │
+│  Validation → Blueprint → Generation → Filtering → Retry      │
+└──────────────────────────────┬───────────────────────────────┘
+                               │
+                               ↓
+┌──────────────────────────────────────────────────────────────┐
+│                         Gemini API                            │
+│                                                              │
+│                 AI Assessment Generation                      │
+└──────────────────────────────────────────────────────────────┘
+```
 
 ### Frontend
 
-The frontend is a Vite + React + TypeScript SPA built for an interactive assessment experience.
+The frontend is a Vite + React + TypeScript single-page application.
 
-Key technologies:
+**Responsibilities:**
 
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- Lucide React icons
-- Framer Motion / `motion` package
-- Recharts for visualization
+* Topic and assessment setup
+* Question presentation
+* Answer collection
+* Results visualization
+* Knowledge analysis
+* Assessment history
 
-The UI is organized into a simple state-driven flow:
+**Core technologies:**
 
-- home screen for topic entry and assessment setup
-- assessment screen for answering questions
-- results dashboard for analysis and recommendations
-- history screen for local saved results
+* React 18
+* TypeScript
+* Vite
+* Tailwind CSS
+* Lucide React
+* Motion / Framer Motion
+* Recharts
 
 ### Backend
 
 The backend is a Node.js + Express service written in TypeScript.
 
-Responsibilities include:
+**Responsibilities:**
 
-- validating incoming assessment requests
-- building the assessment blueprint
-- orchestrating AI question generation
-- validating output quality
-- filtering duplicates
-- handling regeneration logic
-- returning structured assessment data to the frontend
+* Request validation
+* Assessment blueprint generation
+* AI orchestration
+* Question validation
+* Duplicate detection
+* Regeneration
+* Error handling
+* API responses
 
 ### AI Layer
 
-The AI layer uses Google Gemini via the backend client in `server/src/services/geminiClient.ts`.
+Google Gemini powers question generation.
 
-Important characteristics:
+The backend:
 
-- model configuration is sourced from environment variables
-- requests are sent server-side only
-- system prompts and question-generation instructions are assembled in `promptBuilder.ts`
-- structured JSON responses are expected from Gemini
-- the app includes retry logic for transient failures
-- invalid or blocked responses raise explicit application errors
+* Keeps the API key server-side
+* Builds structured generation prompts
+* Requests structured JSON responses
+* Validates generated output
+* Retries transient failures
+* Surfaces explicit application errors
 
-### Data Flow
+---
+
+## 🔄 Request Data Flow
 
 ```text
-Client form input
+Client
+  │
+  │ POST /api/assessment/generate
   ↓
-POST /api/assessment/generate
+Request Validation
+  │
   ↓
-Input validation
+Assessment Blueprint
+  │
   ↓
-Assessment blueprint creation
+Difficulty Allocation
+  │
   ↓
-Gemini question generation
+Gemini Generation
+  │
   ↓
-Question validation + duplicate detection
+Question Validation
+  │
   ↓
-Regeneration if needed
-  ↓
-Final assessment payload
-  ↓
-Results analysis in the browser
-  ↓
-Knowledge score, confidence, recommendations
+Duplicate Detection
+  │
+  ├── Invalid ──→ Regeneration
+  │                    │
+  │                    └──────→ Validation
+  │
+  └── Valid
+        ↓
+Final Assessment
+        ↓
+Client
+        ↓
+Learner Answers
+        ↓
+Analysis Engine
+        ↓
+Knowledge Score + Confidence
+        ↓
+Recommendations
 ```
 
-## Tech Stack
+---
 
-| Layer | Technology | Purpose |
-| --- | --- | --- |
-| Frontend | React, TypeScript, Vite | SPA UI and app state |
-| Styling | Tailwind CSS | Design system and responsive UI |
-| Visualization | Recharts | Results and performance charts |
-| Motion | motion / Framer Motion | UI transitions and polish |
-| Backend | Node.js, Express, TypeScript | API and assessment orchestration |
-| Validation | Zod | Request and output validation |
-| AI | Google Gemini API | Assessment generation |
-| Storage | browser localStorage | persistent assessment history |
-| Deployment target | Netlify + Render | frontend/backend hosting |
+## 🛠️ Tech Stack
 
-## Project Structure
+| Layer            | Technology             | Purpose                           |
+| ---------------- | ---------------------- | --------------------------------- |
+| Frontend         | React                  | UI and application flow           |
+| Language         | TypeScript             | Type-safe application development |
+| Build Tool       | Vite                   | Frontend development and builds   |
+| Styling          | Tailwind CSS           | Responsive UI and design system   |
+| Icons            | Lucide React           | Interface iconography             |
+| Motion           | Motion / Framer Motion | UI animation and transitions      |
+| Charts           | Recharts               | Performance visualization         |
+| Backend          | Node.js                | Server runtime                    |
+| API              | Express                | REST API                          |
+| Validation       | Zod                    | Request/output validation         |
+| AI               | Google Gemini API      | AI assessment generation          |
+| Storage          | `localStorage`         | Assessment history                |
+| Frontend Hosting | Netlify                | Production frontend               |
+| Backend Hosting  | Render                 | Production API                    |
+
+---
+
+## 📁 Project Structure
 
 ```text
 knowlyst/
+│
 ├── client/
 │   ├── public/
-│   ├── src/
-│   │   ├── App.tsx
-│   │   ├── index.css
-│   │   ├── main.tsx
-│   │   ├── components/
-│   │   │   ├── assessment/
-│   │   │   ├── common/
-│   │   │   ├── home/
-│   │   │   ├── layout/
-│   │   │   └── results/
-│   │   ├── context/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── types/
-│   │   └── utils/
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── tsconfig*.json
+│   └── src/
+│       ├── components/
+│       │   ├── assessment/
+│       │   ├── common/
+│       │   ├── home/
+│       │   ├── layout/
+│       │   └── results/
+│       │
+│       ├── context/
+│       ├── hooks/
+│       ├── services/
+│       ├── types/
+│       ├── utils/
+│       │
+│       ├── App.tsx
+│       ├── index.css
+│       └── main.tsx
+│
 ├── server/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── controllers/
-│   │   ├── middleware/
-│   │   ├── services/
-│   │   ├── types/
-│   │   ├── validators/
-│   │   └── index.ts
-│   ├── package.json
-│   └── tsconfig.json
+│   └── src/
+│       ├── config/
+│       ├── controllers/
+│       ├── middleware/
+│       ├── services/
+│       ├── types/
+│       ├── validators/
+│       └── index.ts
+│
 ├── package.json
 ├── README.md
 ├── .gitignore
 └── .env
 ```
 
-Key implementation areas:
+### Key Implementation Files
 
-- `client/src/services/api.ts` handles the frontend API calls
-- `client/src/services/analysis.ts` calculates knowledge signals and recommendations
-- `server/src/services/promptBuilder.ts` builds assessment blueprints and prompts
-- `server/src/services/geminiClient.ts` sends requests to Gemini
-- `server/src/services/assessmentGenerator.ts` orchestrates generation, validation, and regeneration
-- `server/src/config/env.ts` validates environment configuration
-- `server/src/index.ts` starts the Express app and configures CORS
+| File                                         | Responsibility                                            |
+| -------------------------------------------- | --------------------------------------------------------- |
+| `client/src/services/api.ts`                 | Frontend API communication                                |
+| `client/src/services/analysis.ts`            | Knowledge analysis and recommendations                    |
+| `server/src/services/promptBuilder.ts`       | Assessment blueprint and prompt construction              |
+| `server/src/services/geminiClient.ts`        | Gemini API communication                                  |
+| `server/src/services/assessmentGenerator.ts` | Generation, validation, duplicate filtering, regeneration |
+| `server/src/config/env.ts`                   | Environment validation                                    |
+| `server/src/index.ts`                        | Express server and CORS configuration                     |
 
-## Getting Started
+---
 
-### Prerequisites
+# 🚀 Getting Started
 
-- Node.js 18+ or a compatible current LTS version
-- npm
-- A Google Gemini API key
+## Prerequisites
 
-### Clone
+Make sure you have:
+
+* **Node.js 18+** or a compatible current LTS version
+* **npm**
+* A **Google Gemini API key**
+
+---
+
+## 1. Clone the Repository
 
 ```bash
 git clone <your-repository-url>
 cd knowlyst
 ```
 
-### Install dependencies
+---
+
+## 2. Install Dependencies
 
 From the project root:
 
@@ -258,17 +481,15 @@ npm install --prefix client
 npm install --prefix server
 ```
 
-You can also use the root script:
+Or use the root installation script:
 
 ```bash
 npm run install:all
 ```
 
-### Environment variables
+---
 
-The project expects environment variables at the backend level. These are validated in `server/src/config/env.ts`.
-
-#### Backend environment variables
+## 3. Configure Environment Variables
 
 Create a `.env` file in the project root:
 
@@ -280,108 +501,135 @@ PORT=3000
 NODE_ENV=development
 ```
 
-Notes:
+### Frontend
 
-- `GEMINI_API_KEY` must remain on the server and is never exposed to the browser.
-- `GEMINI_MODEL` is read by the backend Gemini client.
-- `CORS_ORIGIN` is used by the Express server for local development.
-- `PORT` is used when the server starts.
-
-#### Frontend environment variable
-
-The frontend can use a runtime environment variable for the backend API URL:
+The frontend can optionally use:
 
 ```env
 VITE_API_URL=http://localhost:3000
 ```
 
-This is optional because the app falls back to `/api` for local Vite proxy usage.
+The application can fall back to `/api` when using the local Vite proxy configuration.
 
-## Running Locally
+> 🔐 **Never expose `GEMINI_API_KEY` to the frontend.**
 
-### Start the backend
+---
+
+# ⚡ Running Locally
+
+### Option 1 — Run Everything
+
+From the root:
+
+```bash
+npm run dev
+```
+
+### Option 2 — Run the Backend
 
 ```bash
 cd server
 npm run dev
 ```
 
-### Start the frontend
+### Option 3 — Run the Frontend
+
+In another terminal:
 
 ```bash
 cd client
 npm run dev
 ```
 
-### Start both together from the root
+Once both services are running, open the frontend URL provided by Vite.
 
-```bash
-npm run dev
-```
+---
 
-This uses the root script from `package.json` and runs the client and server concurrently.
+# 📦 Production Build
 
-## Production Build
-
-From the project root:
+Build the entire project:
 
 ```bash
 npm run build
 ```
 
-This runs both the client and server build scripts.
+Or build each application independently.
 
-### Frontend build
+### Frontend
 
 ```bash
 npm run build --prefix client
 ```
 
-### Backend build
+### Backend
 
 ```bash
 npm run build --prefix server
 ```
 
-## Deployment
+---
 
-This project is designed for a split deployment model:
+# ☁️ Deployment
+
+KNOWLYST uses a split deployment architecture.
 
 ```text
-Netlify
-  ↓
-Frontend Vite SPA
-  ↓
-Render
-  ↓
-Express API
-  ↓
-Gemini API
+                 INTERNET
+                     │
+                     ↓
+          ┌────────────────────┐
+          │      Netlify       │
+          │                    │
+          │  React + Vite SPA  │
+          └─────────┬──────────┘
+                    │
+                    │ HTTPS API
+                    ↓
+          ┌────────────────────┐
+          │      Render        │
+          │                    │
+          │ Express + Node API │
+          └─────────┬──────────┘
+                    │
+                    ↓
+          ┌────────────────────┐
+          │    Gemini API      │
+          │                    │
+          │ AI Generation      │
+          └────────────────────┘
 ```
 
-### Netlify
+## Netlify
 
-Suggested configuration:
+Recommended configuration:
 
-- Base directory: `client`
-- Build command: `npm run build`
-- Publish directory: `client/dist`
-- Environment variable:
+```text
+Base directory:       client
+Build command:        npm run build
+Publish directory:    client/dist
+```
+
+Environment variable:
 
 ```env
 VITE_API_URL=https://YOUR-RENDER-SERVICE.onrender.com
 ```
 
-No redirect file is required unless the app starts using client-side routing libraries. The current implementation does not use `react-router-dom` or route-based navigation.
+The current application does not use `react-router-dom`, so a route redirect configuration is not currently required.
 
-### Render
+---
 
-Suggested configuration:
+## Render
 
-- Root directory: `server`
-- Build command: `npm install && npm run build`
-- Start command: `npm run start`
-- Environment variables:
+Recommended configuration:
+
+```text
+Root directory:       server
+Build command:        npm install && npm run build
+Start command:        npm run start
+```
+
+Environment variables:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key
@@ -390,25 +638,29 @@ CORS_ORIGIN=https://YOUR-NETLIFY-SITE.netlify.app
 NODE_ENV=production
 ```
 
-The server listens on `PORT` when provided by the host and defaults to the configured value otherwise.
+Render provides the production `PORT` environment variable when required.
 
-## API Documentation
+---
 
-### Health check
+# 🔌 API
+
+## Health Check
 
 ```http
 GET /api/health
 ```
 
-Returns a simple health-response object with status and timestamp.
+Returns a simple health response containing the server status and timestamp.
 
-### Generate assessment
+---
+
+## Generate Assessment
 
 ```http
 POST /api/assessment/generate
 ```
 
-Request body:
+### Request
 
 ```json
 {
@@ -417,7 +669,7 @@ Request body:
 }
 ```
 
-Response shape:
+### Response
 
 ```json
 {
@@ -429,7 +681,12 @@ Response shape:
     {
       "id": "q1",
       "question": "...",
-      "options": ["A", "B", "C", "D"],
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
       "correctAnswer": 1,
       "difficulty": "foundation",
       "topic": "React",
@@ -441,79 +698,221 @@ Response shape:
 }
 ```
 
-Error responses are handled centrally by the server middleware and return a structured application error payload when validation or generation fails.
+The server returns structured application errors when validation or generation fails.
 
-## Error Handling & Reliability
+---
 
-The application includes several practical reliability mechanisms:
+# 🛡️ Reliability & Error Handling
 
-- request validation via Zod
-- AI response validation from Gemini
-- duplicate detection to suppress repeated question stems
-- regeneration path for rejected questions
-- retry logic for transient Gemini failures
-- explicit error handling for invalid API keys, rate limits, timeouts, and service errors
-- graceful frontend errors for network and generation failures
+AI systems can produce unpredictable output.
 
-## Testing
+KNOWLYST therefore treats AI generation as a pipeline that requires validation rather than blindly trusting the model.
 
-The repository includes a server-side test file for assessment generation logic:
+### Current Safeguards
 
-- `server/src/services/assessmentGenerator.test.ts`
+```text
+AI Output
+   │
+   ↓
+Schema Validation
+   │
+   ↓
+Quality Checks
+   │
+   ↓
+Duplicate Detection
+   │
+   ├── Rejected → Regenerate
+   │
+   └── Accepted
+          ↓
+      Assessment
+```
 
-There is no dedicated `npm test` script currently defined at the project root or in the server package; the test file is present and can be used with Node’s test runner in an environment where the project is set up correctly.
+Implemented mechanisms include:
 
-## Security Considerations
+* Zod request validation
+* Gemini response validation
+* Duplicate detection
+* Regeneration of rejected questions
+* Retry handling for transient Gemini failures
+* Explicit API-key error handling
+* Rate-limit handling
+* Timeout handling
+* Service-error handling
+* Frontend network-error handling
 
-The application keeps sensitive values on the server side:
+---
 
-- Gemini API keys are loaded from environment variables only
-- the frontend does not contain server secrets
-- CORS is configured for the host environment rather than hardcoded into the client
-- backend input validation prevents malformed requests from reaching the generation path
+# 🧪 Testing
 
-## Design Philosophy
+Assessment-generation logic includes a server-side test file:
 
-The design philosophy is straightforward:
+```text
+server/src/services/assessmentGenerator.test.ts
+```
 
-> No vanity scores. Understand what holds, what slips, and what to learn next.
+The current repository does not define a dedicated root-level `npm test` script.
 
-The project is focused on diagnostic measurement rather than “just another quiz.” The intent is to make progress legible and actionable.
+The test file can be executed using Node's test runner when the project environment is configured appropriately.
 
-## Roadmap
+---
 
-Planned or future-facing ideas that fit the current project direction include:
+# 🔐 Security
 
-- user authentication and saved profiles
-- richer personalized learning paths
-- more advanced analytics and longitudinal tracking
-- additional AI providers and model flexibility
-- more sophisticated knowledge-modeling and recommendation logic
+Security-sensitive configuration is intentionally kept server-side.
 
-These ideas are not currently implemented in the codebase and are described as future possibilities only.
+### Current Principles
 
-## Screenshots
+* 🔑 Gemini API keys are stored in environment variables.
+* 🚫 Gemini secrets are never embedded in the frontend.
+* 🌐 CORS is controlled by the backend.
+* 🧹 Backend inputs are validated before reaching the generation pipeline.
+* ⚠️ Invalid generation responses are rejected instead of blindly trusted.
+
+---
+
+# 🎨 Design Philosophy
+
+KNOWLYST is built around one principle:
+
+> **No vanity scores. Understand what holds, what slips, and what to learn next.**
+
+The product is intentionally positioned as a **diagnostic knowledge tool**, not simply another quiz generator.
+
+The distinction is important:
+
+```text
+Quiz App
+   │
+   └── "You scored 80%."
+   
+KNOWLYST
+   │
+   ├── What do you understand?
+   ├── Where does understanding weaken?
+   ├── How consistent is it?
+   ├── How deep does it go?
+   └── What should you learn next?
+```
+
+---
+
+# 🗺️ Roadmap
+
+The following are future-facing ideas and are **not currently implemented**:
+
+### 👤 Personalization
+
+* [ ] User authentication
+* [ ] Saved learner profiles
+* [ ] Persistent cloud-based assessment history
+
+### 🧠 Intelligence
+
+* [ ] More sophisticated knowledge modeling
+* [ ] Richer personalized learning paths
+* [ ] More advanced recommendation logic
+
+### 📊 Analytics
+
+* [ ] Longitudinal learning analytics
+* [ ] Progress tracking over time
+* [ ] Historical knowledge comparisons
+
+### 🤖 AI
+
+* [ ] Additional AI providers
+* [ ] Flexible model selection
+* [ ] Expanded generation strategies
+
+---
+
+# 📸 Screenshots
 
 > Screenshots coming soon.
 
-## Contributing
+---
 
-Contributions are welcome if they improve the quality, correctness, or usefulness of the assessment system without altering the core product intent.
+# 🤝 Contributing
 
-A sensible contribution workflow is:
+Contributions are welcome when they improve the quality, correctness, or usefulness of KNOWLYST without compromising its core diagnostic philosophy.
 
-1. fork the repository
-2. create a feature branch
-3. make focused changes
-4. validate frontend and backend builds
-5. submit a pull request with a clear explanation
+### Contribution Workflow
 
-## License
+```text
+Fork
+  ↓
+Create Feature Branch
+  ↓
+Make Focused Changes
+  ↓
+Run Builds / Validation
+  ↓
+Open Pull Request
+```
 
-No license file is currently present in the repository, so the project does not yet declare a license.
+### Suggested Workflow
 
-## Summary
+```bash
+git checkout -b feature/your-feature
+```
 
-KNOWLYST is a full-stack, AI-assisted assessment platform designed to estimate how well a learner understands a topic across multiple layers of difficulty. The project combines a modern React frontend, a TypeScript Express backend, Gemini-based question generation, validation, duplicate filtering, and an analysis engine that turns assessment responses into useful diagnostic insight.
+Make your changes, validate the frontend and backend, then open a pull request with a clear explanation of what changed and why.
 
-KNOWLYST is best understood as a practical knowledge-diagnostic tool: not a simple quiz generator, but a platform for understanding what a learner knows, where their understanding weakens, and what they should study next.
+---
+
+# 📄 License
+
+No license file is currently included in the repository.
+
+Therefore, **the project does not currently declare an open-source license**.
+
+---
+
+# 🧠 The Idea Behind KNOWLYST
+
+Knowledge is rarely binary.
+
+Someone can remember terminology but struggle to apply it.
+
+Someone can solve familiar problems but fail when the context changes.
+
+Someone can perform well on fundamentals while having little understanding of deeper concepts.
+
+KNOWLYST is built around exploring those differences.
+
+```text
+                    KNOWLEDGE
+                        │
+        ┌───────────────┼───────────────┐
+        ↓               ↓               ↓
+   Fundamentals     Application       Reasoning
+        │               │               │
+        └───────────────┼───────────────┘
+                        ↓
+                   Consistency
+                        │
+                        ↓
+                      Depth
+                        │
+                        ↓
+                 Understanding
+```
+
+The objective isn't simply to determine whether an answer is **right or wrong**.
+
+It is to understand **how far the learner's understanding goes**.
+
+---
+
+<div align="center">
+
+## KNOWLYST
+
+**Know the unknown.**
+
+*Measure understanding. Find the gaps. Learn what matters next.*
+
+</div>
+```
