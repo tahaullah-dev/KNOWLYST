@@ -423,13 +423,8 @@ function generateRecommendations(
     recommendations.push('Build a stronger foundation by reviewing basic concepts first');
   }
   
-  // Add general recommendations if few specific ones
-  if (recommendations.length === 0) {
-    recommendations.push('Continue practicing with increasingly complex problems');
-    recommendations.push('Explore edge cases and advanced scenarios in this topic');
-  }
-  
-  // Limit to top 5
+  // Return only specific recommendations based on actual weaknesses
+  // Don't show generic fallback recommendations when user performs well
   return recommendations.slice(0, 5);
 }
 

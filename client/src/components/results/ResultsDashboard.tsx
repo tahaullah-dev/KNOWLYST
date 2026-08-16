@@ -144,21 +144,23 @@ export default function ResultsDashboard({ onRetake, onHome, initialResult = nul
           </Card>
 
           {/* Next Steps */}
-          <Card className="p-2xl bg-surface-light border border-border-light">
-            <h3 className="text-h4 text-text-primary font-semibold mb-lg">
-              Recommended Next Steps
-            </h3>
-            <ol className="space-y-md">
-              {analysis.recommendations.map((recommendation, index) => (
-                <li key={index} className="flex gap-lg">
-                  <span className="inline-flex items-center justify-center h-6 w-6 rounded-sm bg-accent-primary text-white text-body font-bold flex-shrink-0">
-                    {index + 1}
-                  </span>
-                  <span className="text-body text-text-secondary">{recommendation}</span>
-                </li>
-              ))}
-            </ol>
-          </Card>
+          {analysis.recommendations.length > 0 && (
+            <Card className="p-2xl bg-surface-light border border-border-light">
+              <h3 className="text-h4 text-text-primary font-semibold mb-lg">
+                Recommended Next Steps
+              </h3>
+              <ol className="space-y-md">
+                {analysis.recommendations.map((recommendation, index) => (
+                  <li key={index} className="flex gap-lg">
+                    <span className="inline-flex items-center justify-center h-6 w-6 rounded-sm bg-accent-primary text-white text-body font-bold flex-shrink-0">
+                      {index + 1}
+                    </span>
+                    <span className="text-body text-text-secondary">{recommendation}</span>
+                  </li>
+                ))}
+              </ol>
+            </Card>
+          )}
         </div>
 
         {/* Optional Sections: Review & History */}
